@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+        
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        input {
+            margin: 10px;
+            padding: 5px;
+        }
+
+        button {
+            background: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Calculadora IMC</h1>
+        
+        <div>
+            <label>Peso (kg):</label>
+            <input type="number" id="peso">
+        </div>
+
+        <div>
+            <label>Altura (m):</label>
+            <input type="number" id="altura">
+        </div>
+
+        <button onclick="calcularIMC()">Calcular</button>
+        
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularIMC() {
+            let peso = document.getElementById('peso').value;
+            let altura = document.getElementById('altura').value;
+            let resultado = document.getElementById('resultado');
+
+            if(peso != '' && altura != '') {
+                let imc = peso / (altura * altura);
+                let mensagem = '';
+
+                if(imc < 18.5) {
+                    mensagem = 'Abaixo do peso';
+                }
+                else if(imc < 25) {
+                    mensagem = 'Peso normal';
+                }
+                else if(imc < 30) {
+                    mensagem = 'Sobrepeso'; 
+                }
+                else {
+                    mensagem = 'Obesidade';
+                }
+
+                resultado.innerHTML = 'IMC: ' + imc.toFixed(2) + '<br>' + mensagem;
+            }
+            else {
+                resultado.innerHTML = 'Preencha todos os campos!';
+            }
+        }
+    </script>
+</body>
+</html>
